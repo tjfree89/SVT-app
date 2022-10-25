@@ -1,4 +1,5 @@
 const express = require('express');
+const req = require('express/lib/request');
 const { get } = require('express/lib/response');
 const app = express();
 //if setting up a desired port, add PORT to env.sh file.
@@ -38,9 +39,14 @@ const calculateDistanceUnits = (x1,x2,y1,y2) => {
 /*filterbots....Filter bots that are all within 10 units of the load.
 
 */
-// const filterBots = (req, res, next) => {
-
-// }
+/* const filterBots = (req, res, next) => {
+    closeBots = req.bots.filter((bot) => {
+        return bot.distance <= 10;
+    });
+    closeBots = closeBots.sort((a,b) => {
+        return b.batteryLevel - a.batteryLevel
+    });
+}*/
 //sort returns the best bots as is
 const sortBots = (req, res, next) => {
     req.bots = req.bots.sort((a,b) => {
