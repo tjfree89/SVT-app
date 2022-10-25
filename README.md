@@ -1,8 +1,8 @@
 
-#SVT ROBOTICS APPLICATION
+# SVT ROBOTICS APPLICATION
 - This application will create a local server and an API using Express.js. The API accepts payloads for a POST request that represent a pallet needing to be moved, and will be assigned to the nearest robot or nearest robot with the highest battery life if there are more than 1 robots within 10 distance units. The API will also make a GET request to another endpoint (provided by SVT Robotics) as part of its middleware after the POST request.
 
-# TO RUN THIS PROJECT
+## TO RUN THIS PROJECT
 - Clone to a local repository.
 - Install necessary dependencies:
     - This project uses:
@@ -15,9 +15,9 @@
 
 
 
-##MOVING FORWARD
-###Suggestions and ideas for changes depending on the details of this project:
-###Note: I did not implement exactly the same as in the requirements:
+## MOVING FORWARD
+### Suggestions and ideas for changes depending on the details of this project:
+### Note: I did not implement exactly the same as in the requirements:
     - I commented out the filter statement which would get everything within 10 distance units and just sorted the bots so the best would always be first.
 
 - Adding authentication, so only a user could access bots information if logged in.
