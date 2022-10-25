@@ -11,7 +11,7 @@
     - Navigate to the project directory(folder)
     - Node comes with the Node Package Manager (NPM) by default, use this package manager to install all dependecies at once by running 'npm install' on the command line in the appropriate directory.
     - When you are ready to start the server enter 'node app.js' in the terminal while in the directory of the project. You should see confirmation that the server is open and listening on a specified port #
-        - When sending a new task object, send it as a querystring in the browser. ex: https://localhost:3000/?loadId=_&x=_&y=_ you should see the best option in the console and 'Howdy' in the browser.
+        - When sending a new task object, send it as a querystring in the browser. ex: https://localhost:3000/?loadId=_&x=_&y=_ you should see the best option in the console (and 'Howdy' in the browser....edit: now you see the returned best robot for the job) and in the browser.
 
 
 
@@ -20,6 +20,7 @@
 ### Note: I did not implement exactly the same as in the requirements:
     - I commented out the filter statement which would get everything within 10 distance units and just sorted the bots so the best would always be first.
 
+- Add remaining CRUD operations
 - Adding authentication, so only a user could access bots information if logged in.
 - Hosting in the cloud with Azure API manager instead of locally serving (since Azure is used at SVT)
 - Using multiple processes to speed up task assignment and server tasks.

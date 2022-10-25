@@ -66,6 +66,7 @@ const sortBots = (req, res, next) => {
    }
    console.log(req.bots);
    console.log(`The best bot is ${JSON.stringify(returnObj)}`)
+    res.status(200).send(returnObj);
 }
 //add the calculated distance to the bots
 const addCalculatedDistance = (req, res, next) =>{
@@ -107,7 +108,7 @@ app.get('/bots/', (req, res, next) => {
         }
       });    
       
-      res.status(200).send(`Howdy`);
+    //   res.status(200).send(`Howdy`);
 });
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
