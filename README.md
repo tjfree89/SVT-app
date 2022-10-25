@@ -4,20 +4,22 @@
 #TO RUN THIS PROJECT
 - Clone to a local repository.
 - Install necessary dependencies:
-    - This project uses node, install if you have not done so already
+    - This project uses:
+    - requests module
+    - node, install if you have not done so already
     - Navigate to the project directory(folder)
     - Node comes with the Node Package Manager (NPM) by default, use this package manager to install all dependecies at once by running 'npm install' on the command line in the appropriate directory.
-    - Add endpoints, as a secure practice I will be adding the URL endpoints to a .env file and ignoring from the project repository.
-    - Decide whether you would like to send the API a task via curl or write into the project file.
+    - Add endpoints
     - When you are ready to start the server enter 'node app.js' in the terminal. You should see confirmation that the server is open and listening on a specified port #
-        - If you decided to add the task-payload in the project file, after the server responds you should also see a robot object print to the terminal which represents the best bot for the job.
-        - If curling wait for server to respond then curl payload with query string to the port number of the assignNewTasks API. 
-        - OPTION TO ENTER PAYLOAD MANUALLY VIA COMMAND LINE PROMPT?
+        - When sending a new task object, send it as a querystring in the browser: https://localhost:3000/?loadId=_&x=_&y=_ you should see the best option in the console and 'Howdy' in the browser.
 
 
 
 ##MOVING FORWARD
 ###Suggestions and ideas for changes depending on the details of this project:
+- Instead of filtering the bots within 10 feet of the payload just leave them sorted as is and return the first 
+bot in the array. It will be the closest bot, if tied for distance will return bot with highest battery level.
+- Adding authentication, so the user could only access bots information if logged in.
 - Hosting in the cloud with Azure API manager instead of locally serving (since Azure is used at SVT)
 - Using multiple processes to speed up task assignment and server tasks.
 - Adding a boolean flag to each bot object, in the array of bots-objects response from the SVT Robotics endpoint to indicate whether each bot is currently executing a task. Meaning they cannot accept a new task until they finish the task they are on. Once they are finished with their task, it is possible that they wouldn't be the best suited bot.
