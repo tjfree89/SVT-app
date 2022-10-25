@@ -20,7 +20,7 @@
 ### Suggestions and ideas for changes depending on the details of this project:
 - Hosting in the cloud with Azure API manager instead of locally serving (since Azure is used at SVT)
 - Using multiple processes to speed up task assignment and server tasks.
-- Adding a boolean flag to each bot object, in the array of bots-objects response from the SVT Robotics endpoint to indicate whether each bot is currently executing a task. Meaning they cannot accept a new task until they finish the task they are on. Once they are finished with their task, it is possible that they wouldn't be the best suited bot.
+- Adding a boolean flag to each bot object, in the response from the SVT Robotics endpoint to indicate whether each bot is currently executing a task. Meaning they cannot accept a new task until they finish the task they are on. Once they are finished with their task, it is possible that they wouldn't be the best suited bot.
     - Prevents re-assignment and task loss. 
     - Potentially only returning available bots in response
 - Adding a jobs/tasks queue that tracks tasks arriving from the controller on the way to the assignNewTasksRoute API in case there aren't any available bots. If all bots are busy add to queue. 
