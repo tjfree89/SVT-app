@@ -35,8 +35,13 @@ const calculateDistanceUnits = (x1,x2,y1,y2) => {
     } etc...
     bots/?loadId=231&x=5&y=3
      */
-//filterbots
-//sort 
+/*filterbots....Filter bots that are all within 10 units of the load.
+
+*/
+// const filterBots = (req, res, next) => {
+
+// }
+//sort returns the best bots as is
 const sortBots = (req, res, next) => {
     req.bots = req.bots.sort((a,b) => {
         if(a.distance === b.distance){
@@ -47,7 +52,14 @@ const sortBots = (req, res, next) => {
     /* After we have sorted we will send back the response with the first bot in the array. It will be the closest bot
     and have the highest battery level.
     */
-   console.log(`The best bot is ${JSON.stringify(req.bots[0])}`)
+   //quick formatting fix
+   const returnObj = {
+    robotId: req.bots[0].robotId,
+    distanceToGoal: req.bots[0].distance,
+    batteryLevel: req.bots[0].batteryLevel
+   }
+   console.log(req.bots);
+   console.log(`The best bot is ${JSON.stringify(returnObj)}`)
 }
 //add the calculated distance to the bots
 const addCalculatedDistance = (req, res, next) =>{
