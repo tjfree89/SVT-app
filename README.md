@@ -1,7 +1,8 @@
+
 #SVT ROBOTICS APPLICATION
 - This application will create a local server and an API using Express.js. The API accepts payloads for a POST request that represent a pallet needing to be moved, and will be assigned to the nearest robot or nearest robot with the highest battery life if there are more than 1 robots within 10 distance units. The API will also make a GET request to another endpoint (provided by SVT Robotics) as part of its middleware after the POST request.
 
-#TO RUN THIS PROJECT
+# TO RUN THIS PROJECT
 - Clone to a local repository.
 - Install necessary dependencies:
     - This project uses:
@@ -23,6 +24,7 @@
 - Hosting in the cloud with Azure API manager instead of locally serving (since Azure is used at SVT)
 - Using multiple processes to speed up task assignment and server tasks.
 - Adding a boolean flag to each bot object to indicate whether each bot is currently executing a task. They cannot accept a new task until they finish the task they are on. Once they are finished with their task, it is possible that they wouldn't be the best suited bot.
+
     - Prevents re-assignment and task loss. 
     - Potentially only returning available bots in response?
 - Adding a jobs/tasks queue that tracks tasks arriving from the controller on the way to the assignNewTasksRoute API in case there aren't any available bots. If all bots are busy add to queue. 
