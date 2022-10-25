@@ -1,7 +1,7 @@
-#SVT ROBOTICS APPLICATION
+# SVT ROBOTICS APPLICATION
 - This application will create a local server and an API, using Express.js. I will refer to this API as assignNewTasksRoute. The assignNewTasksRoute is tasked with accepting payloads that represent a task that needs to be assigned to the nearest robot or nearest robot with the highest battery life if there are more than 1 robot within 10 distance units. The assignNewTasksRoute will also make a GET request to another endpoint provided via SVT Robotics, as part of its middleware. When the SVT Robotics endpoint is hit an array of objects is returned as a response. Each object represents 1 worker bot of the fleet of 100 and contains the bot's id and an x,y coordinates. 
 
-#TO RUN THIS PROJECT
+# TO RUN THIS PROJECT
 - Clone to a local repository.
 - Install necessary dependencies:
     - This project uses node, install if you have not done so already
@@ -9,15 +9,15 @@
     - Node comes with the Node Package Manager (NPM) by default, use this package manager to install all dependecies at once by running 'npm install' on the command line in the appropriate directory.
     - Add endpoints, as a secure practice I will be adding the URL endpoints to a .env file and ignoring from the project repository.
     - Decide whether you would like to send the API a task via curl or write into the project file.
-    - When you are ready to start the server enter 'node app.js' in the terminal. You should see confirmation that the server is open and listening on a specified port #
+    - When you are ready to start the server enter 'node app.js' in the terminal. You should see confirmation that the server is open and listening on a specified port number.
         - If you decided to add the task-payload in the project file, after the server responds you should also see a robot object print to the terminal which represents the best bot for the job.
         - If curling wait for server to respond then curl payload with query string to the port number of the assignNewTasks API. 
         - OPTION TO ENTER PAYLOAD MANUALLY VIA COMMAND LINE PROMPT?
 
 
 
-##MOVING FORWARD
-###Suggestions and ideas for changes depending on the details of this project:
+## MOVING FORWARD
+### Suggestions and ideas for changes depending on the details of this project:
 - Hosting in the cloud with Azure API manager instead of locally serving (since Azure is used at SVT)
 - Using multiple processes to speed up task assignment and server tasks.
 - Adding a boolean flag to each bot object, in the array of bots-objects response from the SVT Robotics endpoint to indicate whether each bot is currently executing a task. Meaning they cannot accept a new task until they finish the task they are on. Once they are finished with their task, it is possible that they wouldn't be the best suited bot.
