@@ -3,7 +3,7 @@ const req = require('express/lib/request');
 const { get } = require('express/lib/response');
 const app = express();
 //if setting up a desired port, add PORT to env.sh file.
-const port = 3000;
+const port = 5001;
 const request = require('request');
 
 
@@ -23,9 +23,9 @@ app.use(express.static('SVTROBOTICS'));
 const calculateDistanceUnits = (x1,x2,y1,y2) => {
     return Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
 
-    /*use this to test sort function...if distance is the same, sort by batterylevel
-    return Math.floor(Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2))); 
-    */
+    //use this to test sort function...if distance is the same, sort by batterylevel
+    // return Math.floor(Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2))); 
+    
   }
 
 //to get the best bot, assuming that the req uses a query with payload
@@ -36,28 +36,32 @@ const calculateDistanceUnits = (x1,x2,y1,y2) => {
     } etc...
     bots/?loadId=231&x=5&y=3
      */
-/*filterbots....Filter bots that are all within 10 units of the load.
 
-*/
-/* const filterBots = (req, res, next) => {
-    closeBots = req.bots.filter((bot) => {
-        return bot.distance <= 10;
-    });
-    closeBots = closeBots.sort((a,b) => {
-        return b.batteryLevel - a.batteryLevel
-    });
-}*/
 //sort returns the best bots as is
-const sortBots = (req, res, next) => {
-    req.bots = req.bots.sort((a,b) => {
+const sortBots = async(req, res, next) => {
+    req.bots = await req.bots.sort((a,b) => {
         if(a.distance === b.distance){
             return b.batteryLevel - a.batteryLevel;
         }
         return a.distance - b.distance;
-    })
-    /* After we have sorted we will send back the response with the first bot in the array. It will be the closest bot
-    and have the highest battery level.
-    */
+    });
+    closerTenBots = req.bots.filter((bot) => {
+        return bot.distance <=10;
+    });
+    if(closerTenBots.length > 0){
+        req.bots = closerTenBots.sort((a,b) => {
+            return b.batteryLevel - a.batteryLevel;
+        });
+        const returnObj = {
+            robotId: req.bots[0].robotId,
+            distanceToGoal: req.bots[0].distance,
+            batteryLevel: req.bots[0].batteryLevel
+           }
+           console.log(req.bots);
+           console.log(`The best bot is ${JSON.stringify(returnObj)}`)
+            res.status(200).send(returnObj);
+
+    }else{
    //quick formatting fix
    const returnObj = {
     robotId: req.bots[0].robotId,
@@ -67,6 +71,11 @@ const sortBots = (req, res, next) => {
    console.log(req.bots);
    console.log(`The best bot is ${JSON.stringify(returnObj)}`)
     res.status(200).send(returnObj);
+    }
+    /* After we have sorted we will send back the response with the first bot in the array. It will be the closest bot
+    and have the highest battery level.
+    */
+
 }
 //add the calculated distance to the bots
 const addCalculatedDistance = (req, res, next) =>{
@@ -78,7 +87,7 @@ const addCalculatedDistance = (req, res, next) =>{
     
 }
     //how we get bots then next(); then map calculated distance to bots
-app.post('/bots', (req, res, next) => {
+app.post('/api/robots/closest/', (req, res, next) => {
         
     if(queryArguments.hasOwnProperty('LoadId') && queryArguments.hasOwnProperty('x') && queryArguments.hasOwnProperty('y')){
         const task = {

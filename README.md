@@ -21,6 +21,7 @@
     - I commented out the filter statement which would get everything within 10 distance units and just sorted the bots so the best would always be first.
 
 - Add remaining CRUD operations
+- Create a real-time DB for tasks and robot objects.
 - Adding authentication, so only a user could access bots information if logged in.
 - Hosting in the cloud with Azure API manager instead of locally serving (since Azure is used at SVT)
 - Using multiple processes to speed up task assignment and server tasks.
