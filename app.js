@@ -21,10 +21,10 @@ app.use(express.static('SVTROBOTICS'));
 
 
 const calculateDistanceUnits = (x1,x2,y1,y2) => {
-    //return Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
+    return Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
 
     //use this to test sort function...if distance is the same, sort by batterylevel
-    return Math.floor(Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2))); 
+    // return Math.floor(Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2))); 
     
   }
 
@@ -36,17 +36,7 @@ const calculateDistanceUnits = (x1,x2,y1,y2) => {
     } etc...
     bots/?loadId=231&x=5&y=3
      */
-/*filterbots....Filter bots that are all within 10 units of the load.
 
-*/
-// const filterBots = (req, res, next) => {
-//     closeBots = req.bots.filter((bot) => {
-//         return bot.distance <= 10;
-//     });
-//     closeBots = closeBots.sort((a,b) => {
-//         return b.batteryLevel - a.batteryLevel
-//     });
-// }
 //sort returns the best bots as is
 const sortBots = async(req, res, next) => {
     req.bots = await req.bots.sort((a,b) => {
