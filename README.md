@@ -20,6 +20,7 @@
 ### Note: I did not implement exactly the same as in the requirements:
     - I commented out the filter statement which would get everything within 10 distance units and just sorted the bots so the best would always be first.
 
+- Separate handler functions from the same file as routes.
 - Add remaining CRUD operations
 - Create a real-time DB for tasks and robot objects.
 - Adding authentication, so only a user could access bots information if logged in.
